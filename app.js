@@ -3,6 +3,19 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
+//Genrate New URL Button Clicked Event Handler
+
+//Signup Basic Users
+
+//Signup Pro Users
+
+
+
+//Download CV Button Clicked Event Handler
+
+//Contact Button Clicked Event Handler
+
+//#region 
 let db = [];
 
 app.use(cors());
@@ -35,5 +48,5 @@ app.post("/shorten", (req, res) => {
   console.log(db);
   res.end();
 });
-
+//#endregion
 module.exports = app;
