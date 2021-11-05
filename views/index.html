@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../views-js/index.js" defer></script>
     <style>
       html {
         scroll-behavior: smooth;
       }
+      .hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }
       body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
       .w3-row-padding img {margin-bottom: 12px}
       /* Set the width of the sidebar to 120px */
@@ -19,14 +22,14 @@
       /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
       #main {margin-left: 120px}
       /* Remove margins from "page content" on small screens */
-      @media only screen and (max-width: 600px) {#main {margin-left: 0}}
+      @media only screen and (max-width: 1000px) {#main {margin-left: 0}}
       </style>
   </head>
 
   <body class="w3-black">
     
     <!-- Icon Bar (Sidebar - hidden on small screens) -->
-    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+    <nav class="w3-sidebar w3-bar-block w3-small w3-hide w3-center">
       <!-- Avatar image in top left corner -->
       <img src="../db/related-files/LinkdinProfileImage.jpg" style="width:100%">
       <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
@@ -43,7 +46,7 @@
       </a>
     </nav>
     <!-- Navbar on small screens (Hidden on medium and large screens) -->
-    <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+    <div class="w3-top" id="myNavbar">
       <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
         <a href="#" class="w3-bar-item w3-button" style="width:33.3% !important">HOME</a>
         <a href="#about" class="w3-bar-item w3-button" style="width:33.3% !important">ABOUT</a>
@@ -54,20 +57,21 @@
     <!-- Page Content -->
     <div class="w3-padding-large" id="main">
       <!-- Header/Home -->
-      <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+      <header class="w3-container w3-center w3-black" id="home">
         <h1 class="w3-jumbo"><span class="w3-hide-small">I'm</span> Dor Barabi.</h1>
         <p>Software Developer And Web Designer.</p>
-        <img src="../db/related-files/LinkdinProfileImage.jpg" alt="boy" class="w3-image" style="opacity: 0.5;" width="400" height="200">
+        <img src="../db/related-files/LinkdinProfileImage.jpg" alt="boy" class="w3-image" style="opacity: 0.5;" width="300" height="200">
       </header>
     </div>
+    <iframe name="hiddenFrame" class="hide"></iframe>
       <div class="w3-content w3-justify w3-text-grey w3-padding-64">
         
-      <h1 class= "w3-text-light-grey">Newest Service Available</h1>
+      <h1 class= "w3-text-light">Newest Service Available</h1>
       <h1 class="w3-text-light-grey">URL Shortener Microservice</h1>
         <section>
-          <form action="http://localhost:3000/shorten" method="POST">
+          <!-- <form id="urlShortForm" action="http://localhost:3000/shorten" target="hiddenFrame" method="POST"> -->
             <fieldset>
-              <legend>URL Shortener</legend>
+              <legend class="">URL Shortener</legend>
               <label for="url_input">URL:</label>
               <input 
                 class="w3-input w3-padding-16"
@@ -77,11 +81,13 @@
                 placeholder="Enter Your URL"
               />
               <br>
-              <input id="genrateNewUrlButton" class="w3-button w3-light-grey w3-padding-large " type="submit" value="POST URL" />
+              <li class="w3-padding-24 w3-center" style="list-style-type: none;">
+              <button id="genrateNewUrlButton" class="w3-button w3-white w3-padding-large w3-hover-black">POST URL</button>
+              </li>
             </fieldset>
           </form>
         </section>
-        <label id="newURL"></label>
+        <h5 id="newURL" class="w3-center"></h5>
 
       </div>
     </div>

@@ -2,21 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const Database = require("./database");
 
-//Genrate New URL Button Clicked Event Handler
-
-//Signup Basic Users
-
-//Signup Pro Users
-
-
-
-//Download CV Button Clicked Event Handler
-
-//Contact Button Clicked Event Handler
 
 //#region 
-let db = [];
+let db = new Database();
 
 app.use(cors());
 app.use(express.urlencoded({
@@ -27,26 +17,35 @@ app.use("/public", express.static(`./public`));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
+
 app.get("/redirect/:newURL", (req, res) => {
   const { newURL } = req.params;
-  db.forEach(obj => {
+  db.urls.urls.forEach(obj => {
     if(obj.newURL === newURL){
       console.log(obj.originalURL);
-      obj.redirections++;
+      db.addRedirection(obj.newURL);
       res.redirect(obj.originalURL);
     }
   });
 });
+
 app.post("/shorten", (req, res) => {
+  console.log(req.get("url"));
+  // db.urls.urls.forEach(obj => {
+  //   if(obj.originalURL === req.get("url")){
+  //     res.send(obj.newURL);
+  //   }
+  // });
   let newURL = (new Date()).getTime().toString(36);
-  db.push({
-    originalURL: req.body.url,
-    newURL: newURL,
-    creationDate : Date.now(),
-    redirections : 0,
-  });
+  // db.urls.urls.push({
+  //   originalURL: req.get("url"),
+  //   newURL: newURL,
+  //   creationDate : Date.now(),
+  //   redirections : 0,
+  // });
+  db.addUrl(newURL, req.get("url"));
   console.log(db);
-  res.end();
+  res.send(newURL);
 });
 //#endregion
 module.exports = app;
