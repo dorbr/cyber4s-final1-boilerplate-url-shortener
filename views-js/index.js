@@ -2,7 +2,6 @@
 //Event Listeners
 document.getElementById("genrateNewUrlButton").addEventListener("click", (e) => {
     let formData = new FormData();
-    formData.append("url", "hi");
     axios.post(`http://localhost:3000/shorten`, formData, 
     {
         headers: {
@@ -32,6 +31,39 @@ function w3_close() {
 //Signup Basic User (Client > Server > Client)
 //save users to database with a basic user token
 
+document.getElementById("signupBasicButton").addEventListener("click", (e) =>{
+    $("#form1").toggle();
+    let formData = new FormData();
+    axios.post(`http://localhost:3000/createUser`, formData, 
+    {
+        headers: {
+          "Access-Control-Allow-Origin": "*", 
+          "username": document.getElementById("usernameInput").value,
+          "password": document.getElementById("passwordInput").value,
+          "pro": false
+        }
+    })
+    .then(response =>{
+        alert("Registerd");
+    });
+});
+document.getElementById("signupProButton").addEventListener("click", (e) =>{
+    $("#form2").toggle();
+    let formData = new FormData();
+    axios.post(`http://localhost:3000/createUser`, formData, 
+    {
+        headers: {
+          "Access-Control-Allow-Origin": "*", 
+          "username": document.getElementById("usernameInput2").value,
+          "password": document.getElementById("passwordInput2").value,
+          "pro": true
+        }
+    })
+    .then(response =>{
+        alert("Registerd");
+    });
+});
+
 //Signup Pro Users (Client > Server > Client)
 //save users to database with a pro user token
 
@@ -40,3 +72,13 @@ function w3_close() {
 
 //Contact Button Clicked Event Handler (Client > Mail)
 //send input info to dbarabi5@gmail.com
+
+
+
+
+$("#showBasicSignupForm").click(function(){
+    $("#form1").toggle();
+});
+$("#showProSignupForm").click(function(){
+    $("#form2").toggle();
+});

@@ -29,6 +29,26 @@ app.get("/redirect/:newURL", (req, res) => {
   });
 });
 
+
+
+app.post("/createUser", (req, res) => {
+  
+  // db.urls.urls.forEach(obj => {
+  //   if(obj.originalURL === req.get("url")){
+  //     res.send(obj.newURL);
+  //   }
+  // });
+  // db.urls.urls.push({
+  //   originalURL: req.get("url"),
+  //   newURL: newURL,
+  //   creationDate : Date.now(),
+  //   redirections : 0,
+  // });
+  db.addUser(req.get("username"), req.get("password"), req.get("pro"));
+  console.log(db);
+  res.send("User Added");
+});
+
 app.post("/shorten", (req, res) => {
   console.log(req.get("url"));
   // db.urls.urls.forEach(obj => {

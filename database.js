@@ -32,13 +32,14 @@ class Database{
           }
         );
     }
-    addUser(username, password){
+    addUser(username, password, pro){
         const userObj = {
             username: username,
             password: password,
+            pro: pro,
             creationDate : Date.now(),
         }
-        this.users.push(userObj);
+        this.users.users.push(userObj);
         let jsonString = JSON.stringify(this.users);
         fs.writeFile(
           `${this.#path}${this.#files[1]}`,

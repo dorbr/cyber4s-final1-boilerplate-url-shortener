@@ -7,6 +7,10 @@
     <link href="./public/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../views-js/index.js" defer></script>
@@ -150,8 +154,14 @@
             <span class="w3-opacity"></span>
           </li>
           <li class="w3-light-grey w3-padding-24">
-            <button id="signupBasicButton" class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+            <button id="showBasicSignupForm" class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
           </li>
+          <div id="form1" style="display: none;">
+            <b>Username:</b> <input class="w3-input w3-padding-16" type="text" id="usernameInput" name="username">
+            <b>password: </b><input class="w3-input w3-padding-16" type="text" id="passwordInput" name="password">
+            <button id="signupBasicButton" class="w3-button w3-white w3-padding-large w3-hover-black" type="button" id="submit">Submit</button>
+          </div>
+
         </ul>
       </div>
 
@@ -167,8 +177,13 @@
           <span class="w3-opacity"></span>
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <button id="signupProButton" class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+          <button id="showProSignupForm" class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
         </li>
+        <div id="form2" style="display: none;">
+          <b>Username:</b> <input class="w3-input w3-padding-16" type="text" id="usernameInput2" name="username">
+          <b>password: </b><input class="w3-input w3-padding-16" type="text" id="passwordInput2" name="password">
+          <button id="signupProButton" class="w3-button w3-white w3-padding-large w3-hover-black" type="button" id="submit">Submit</button>
+        </div>
       </ul>
     </div>
   <!-- End Grid/Pricing tables -->
