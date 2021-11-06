@@ -3,6 +3,19 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const Database = require("./database");
+const {
+  MyError,
+  NotFoundPath,
+  PathAlreadyExist,
+  UserAlreadyExist,
+  ServerError,
+  UserDoesNotExist,
+} = require("./errors");
+const {
+  errorLogger,
+  errorResponder,
+  invalidPathHandler,
+} = require("./errorHandler");
 
 
 //#region 
@@ -18,18 +31,26 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.get("/redirect/:newURL", (req, res) => {
+app.get("/redirect/:newURL", (req, res, next) => {
   const { newURL } = req.params;
+  let found = false;
   db.urls.urls.forEach(obj => {
     if(obj.newURL === newURL){
+      found = true;
       console.log(obj.originalURL);
       db.addRedirection(obj.newURL);
       res.redirect(obj.originalURL);
     }
   });
+  try{
+    if(found === false){
+      throw new NotFoundPath();
+    }
+  }
+  catch(err){
+    next(err);
+  }
 });
-
-
 
 app.post("/createUser", (req, res) => {
   
@@ -44,12 +65,39 @@ app.post("/createUser", (req, res) => {
   //   creationDate : Date.now(),
   //   redirections : 0,
   // });
-  db.addUser(req.get("username"), req.get("password"), req.get("pro"));
-  console.log(db);
-  res.send("User Added");
+  let exist = false;
+  db.users.users.forEach(e => {
+    try{
+      if(e.username === req.get("username")){
+        exist = true;
+        throw new UserAlreadyExist();
+      }
+    }
+    catch(err){
+      res.send(err.type);
+    }
+  })
+  if(exist === false){
+    db.addUser(req.get("username"), req.get("password"), req.get("pro"));
+    console.log(db);
+    res.send("User Added");
+  }
+  else{
+    res.send("User Already Exist");
+  }
 });
 
 app.post("/shorten", (req, res) => {
+  db.urls.urls.forEach(urlObj => {
+    try{
+      if(urlObj.originalURL === req.get("url")){
+        throw new PathAlreadyExist();
+      }
+    }
+    catch(err){
+      res.send(urlObj.newURL);
+    }
+  });
   console.log(req.get("url"));
   // db.urls.urls.forEach(obj => {
   //   if(obj.originalURL === req.get("url")){
@@ -67,5 +115,28 @@ app.post("/shorten", (req, res) => {
   console.log(db);
   res.send(newURL);
 });
+app.get("/statistics/:newUrl", (req, res, next) => {
+  const { newUrl } = req.params;
+  let found = false;
+  db.urls.urls.forEach(urlObj => {
+    if(urlObj.newURL === newUrl){
+      found = true;
+      res.send("Number Of Redirections : " + urlObj.redirections);
+    }
+  });
+  try{
+    if(found === false){
+      throw new NotFoundPath();
+    }
+  }
+  catch(err){
+    res.send(err.type);
+  }
+});
+
+app.use(errorLogger);
+app.use(errorResponder);
+app.use(invalidPathHandler);
+
 //#endregion
 module.exports = app;
