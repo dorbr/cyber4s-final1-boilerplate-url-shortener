@@ -10,12 +10,12 @@ const {
   UserAlreadyExist,
   ServerError,
   UserDoesNotExist,
-} = require("./errors");
+} = require("./errors/errors");
 const {
   errorLogger,
   errorResponder,
   invalidPathHandler,
-} = require("./errorHandler");
+} = require("./middleware/errorHandler");
 
 
 //#region 
@@ -25,10 +25,10 @@ app.use(cors());
 app.use(express.urlencoded({
   extended: true
 }))
-app.use("/public", express.static(`./public`));
+app.use("/public", express.static(`../public`));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "../views/index.html");
 });
 
 app.get("/redirect/:newURL", (req, res, next) => {

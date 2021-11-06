@@ -2,8 +2,8 @@ const fs = require('fs');
 
 class Database{
     #files = ['urls.json', 'users.json']
-    #path = './db/'
-    constructor(path = './db/'){
+    #path = './server/db/'
+    constructor(path = './server/db/'){
         fs.promises.mkdir(path, { recursive: true }).then(res =>{
             let rawdata = fs.readFileSync(path + this.#files[0]);
             this.urls = JSON.parse(rawdata);
