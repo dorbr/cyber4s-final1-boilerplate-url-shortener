@@ -44,7 +44,7 @@ document.getElementById("signupBasicButton").addEventListener("click", (e) =>{
         }
     })
     .then(response =>{
-        alert("Registerd");
+        alert(response.data);
     });
 });
 document.getElementById("signupProButton").addEventListener("click", (e) =>{

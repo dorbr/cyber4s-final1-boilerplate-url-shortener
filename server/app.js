@@ -25,10 +25,11 @@ app.use(cors());
 app.use(express.urlencoded({
   extended: true
 }))
-app.use("/public", express.static(`../public`));
+app.use("/", express.static(`./public`));
+
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "../views/index.html");
+  res.sendFile("C:/Users/Dor Barabi/.vscode/Projects/Final-1/public/views/index.html");
 });
 
 app.get("/redirect/:newURL", (req, res, next) => {

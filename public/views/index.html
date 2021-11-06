@@ -35,7 +35,7 @@
     <!-- Icon Bar (Sidebar - hidden on small screens) -->
     <nav class="w3-sidebar w3-bar-block w3-small w3-hide w3-center">
       <!-- Avatar image in top left corner -->
-      <img src="../db/related-files/LinkdinProfileImage.jpg" style="width:100%">
+      <img src="../LinkdinProfileImage.jpg" style="width:100%;">
       <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
         <i class="fa fa-home w3-xxlarge"></i>
         <p>HOME</p>
@@ -62,9 +62,11 @@
     <div class="w3-padding-large" id="main">
       <!-- Header/Home -->
       <header class="w3-container w3-center w3-black" id="home">
-        <h1 class="w3-jumbo"><span class="w3-hide-small">I'm</span> Dor Barabi.</h1>
-        <p>Software Developer And Web Designer.</p>
-        <img src="../db/related-files/LinkdinProfileImage.jpg" alt="boy" class="w3-image" style="opacity: 0.5;" width="300" height="200">
+        <h1 class="w3-jumbo" style="text-align: center; padding-right: 10%;"><span class="w3-hide-small">I'm</span> Dor Barabi</h1>
+        <img src="../LinkdinProfileImage.jpg" alt="boy" class="w3-image" style="opacity: 0.5; display: block;
+        margin: 0 30% !important;" width="300" height="200">
+        <p style="text-align: center; padding-right: 12%;">Software Developer And Web Designer.</p>
+
       </header>
     </div>
     <iframe name="hiddenFrame" class="hide"></iframe>
@@ -74,7 +76,7 @@
       <h1 class="w3-text-light-grey">URL Shortener Microservice</h1>
         <section>
           <!-- <form id="urlShortForm" action="http://localhost:3000/shorten" target="hiddenFrame" method="POST"> -->
-            <fieldset>
+            <fieldset style="display: block;">
               <legend class="">URL Shortener</legend>
               <label for="url_input">URL:</label>
               <input 
@@ -83,6 +85,7 @@
                 type="text"
                 name="url"
                 placeholder="Enter Your URL"
+                style="width: 100%;"
               />
               <br>
               <li class="w3-padding-24 w3-center" style="list-style-type: none;">
@@ -133,8 +136,8 @@
           Happy Clients
         </div>
       </div>
-      <form method="get" action="../db/related-files/Dor Barabi - Software Developer.pdf">
-        <button class="w3-button w3-light-grey w3-padding-large w3-section">
+      <form method="get" action="../public//Dor Barabi - Software Developer.pdf">
+        <button class="w3-button w3-light-grey w3-padding-large w3-section" style="  margin: 35%;">
           <i id="downloadCvButton"  class="fa fa-download"></i> Download CV
         </button>
       </form>
