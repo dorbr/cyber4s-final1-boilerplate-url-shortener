@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "username": "dorbr",
+      "password": "12355",
+      "pro": "false",
+      "creationDate": 1636127110594
+    },
+    {
+      "username": "sagi",
+      "password": "123465",
+      "pro": "true",
+      "creationDate": 1636127317331
+    },
+    {
+      "username": "dorbr",
+      "password": "123456",
+      "pro": "false",
+      "creationDate": 1636192283604
+    },
+    {
+      "username": "ron",
+      "password": "123456",
+      "pro": "false",
+      "creationDate": 1636195432679
+    },
+    {
+      "username": "tomer",
+      "password": "123456",
+      "pro": "true",
+      "creationDate": 1636195446072
+    }
+  ]
+}
